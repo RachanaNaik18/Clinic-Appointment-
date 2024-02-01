@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="alert alert-info text-center "><h2>Patients Login Page</h2></div>
+    <div class="row">
+        <div class="col-lg-6">
+            <form action="" method="post">
+                {% csrf_token %}
+                Username: <input type="text" class="form-control" name="uname" id="">
+                Email: <input type="email" class="form-control" name="email" id="">
+                Password: <input type="password" class="form-control" name="pword" id="">
+                <input type="submit" value="Signup" class="btn btn-success" name="" id="">
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <form action="{% url 'user_login' %}" method="post">
+                {% csrf_token %}
+                Username: <input type="text" class="form-control" name="uname" >
+                <!-- EMAIL: <input type="email" class="form-control" name="email" > -->
+                Password: <input type="password" class="form-control" name="pword" >
+                <input type="submit" value="Login"  class="btn btn-success" id="">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

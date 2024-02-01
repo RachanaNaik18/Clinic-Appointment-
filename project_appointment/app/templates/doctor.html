@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Doctor{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+<div class="alert alert-info text-center">
+    <h2>Today's Appointment </h2>
+</div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Contact</th>
+            <th>Reason</th>
+            <th>Slot</th>
+            <th>Appointment status</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.age}}</td>
+            <td>{{i.contact}}</td>
+            <td>{{i.reason}}</td>
+            <td>{{i.slot}}</td>
+            <td><a href="{% url 'done' i.id %}" class="btn btn-success">
+                Pending
+            </a></td>
+        </tr>
+         {% endfor %}
+
+
+    </table>
+</div>
+{% endblock %}

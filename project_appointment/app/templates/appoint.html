@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %}Booking{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+        
+        {%if messages%}
+        {% for i in messages %}
+        <div class="row">
+            <h4>{{i}}</h4>
+        </div>
+        {% endfor %}
+        {% endif %}
+        
+<div class="row ">
+    <div class="col-lg-5">
+
+        <form action="{% url 'filter' %}" method="post">
+            {% csrf_token %}
+            Search Available slots<input type="date" name="date" />
+            <input type="submit" value="Search" />
+        </form>
+       
+   
+        <table class="table table-striped mt-3">
+            <form action="" method="post" class="form-control">
+                {% csrf_token %}
+                <tr>
+                    <th>Name:</th>
+                    <th><input type="text", placeholder="Enter your name" class="app_form" name="name"></th>
+                </tr>
+                <tr>
+                    <th>Age:</th>
+                    <th><input type="number", placeholder="Please enter your age" class="app_form" name="age"></th>
+                </tr>
+                <tr>
+                    <th>Contact:</th>
+                    <th><input type="number", placeholder="Contact Number" class="app_form" name="con"></th>
+                </tr>
+                <tr>
+                    <th>Reason</th>
+                    <th><input type="textbox", class="form-control" name="reason"></th>
+                </tr>
+                <tr>
+                    <th>Appointment Date:</th>
+                    <th><input type="date"  name="app_date" id="" class="form-control"></th>
+                </tr>
+                <tr>
+                    <th>Slot:</th>
+                    <th><select name="slot" id="" class="form-control">
+                        <option>Select option</option>
+                        {% for i in datas %}
+
+                       
+                        <option value="{{i}}">{{i}}</option>
+                        
+                        {% endfor %}
+                    </select>
+                </th>
+                </tr>
+                <tr>
+                  <th colspan="2"><input type="submit" value="Submit" name="" id="" class="btn btn-success"></th>  
+                </tr>
+            </form>
+        </table>
+        </div>
+    <div class="col-lg-7 mt-5">
+        <a href="/u_signup/">Logout</a>
+        <table class="table table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Contact</th>
+                <th>Reason</th>
+                <th>Slot</th>
+                <th>Appointment Date</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.contact}}</td>
+                <td>{{i.reason}}</td>
+                <td>{{i.slot}}</td>
+                <td>{{i.app_date}}</td>
+            </tr>
+             {% endfor %}
+
+
+        </table>
+        
+
+        </div>
+</div>
+
+</div>
+
+{% endblock %}
